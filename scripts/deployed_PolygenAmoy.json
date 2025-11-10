@@ -1,0 +1,27 @@
+{
+  "suite": {
+    "claimTopicsRegistry": "0x76cbE780EfCA3084b8eb67a514425096412522B2",
+    "trustedIssuersRegistry": "0xD97f6415989AB94b38866E0a4eaA41de3c8bbba0",
+    "identityRegistryStorage": "0xd5BAAA2508D048C49fF89bc9Ef878b7638F0C584",
+    "defaultCompliance": "0xd3abECc377cF83cB37D054B64EE89f0615df5a01",
+    "identityRegistry": "0x59A63E870e2862511747e38bA1cFba6D7F84a39e"
+  },
+  "authorities": {
+    "trexImplementationAuthority": "0x8e08fD1dad664aeb16B0258110411b1Db65F1959",
+    "identityImplementationAuthority": "0xea63E9c54855C140Aa622d368982bbc5B9F8c69E"
+  },
+  "factories": {
+    "trexFactory": "0x9af094CB705421CD4524787a215d3021b4987f59",
+    "identityFactory": "0xDE441B85Fe6a19507b5518153E5600838750b6C3"
+  },
+  "implementations": {
+    "identityImplementation": "0x6b88BF4872F60CE26CDb4eb2F134218a8ad0ED62",
+    "claimTopicsRegistryImplementation": "0x8a1f40F35Fa455A775B6E797B75ffcBc36824497",
+    "trustedIssuersRegistryImplementation": "0x0cC05B99c8112f674B88D8371eF19435eC56D919",
+    "identityRegistryStorageImplementation": "0x41B13AbC28b1624CeFF7b03d821Eb959fc412E43",
+    "identityRegistryImplementation": "0x8969a6caA2Cd324Cb3201A65246d62a6F72Ae2f9",
+    "modularComplianceImplementation": "0x15407f2C7f8032346978Fc7B0C01A13Ad3d5B439",
+    "tokenImplementation": "0x4bb24635F49EbA49846f4794AC752fFBBddf4b0B"
+  },
+  "tokenAddress": "0xe0447515899A2c17f6cA79454Ad23aBB45d2511A"
+}

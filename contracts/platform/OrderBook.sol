@@ -13,7 +13,7 @@ contract OrderBook is ReentrancyGuard, Ownable {
         address sellToken;   // 卖出资产 (ERC20)
         address paymentToken; // 支付资产 (固定平台代币)
         uint256 orderId;
-        bool active;
+        uint256 status;
     }
 
 
@@ -24,7 +24,7 @@ contract OrderBook is ReentrancyGuard, Ownable {
 
     event OrderPlaced(uint256 indexed orderId, address indexed seller, uint256 price, uint256 quantity, address sellToken);
     event OrderFilled(uint256 indexed orderId, address indexed buyer, address indexed seller, uint256 totalPrice);
-
+    event OrderCanceled(uint256 indexed orderId);
 
 
     // 卖家挂单：锁定sellToken
@@ -41,7 +41,7 @@ contract OrderBook is ReentrancyGuard, Ownable {
             sellToken: sellToken,
             paymentToken: paymentToken,
             orderId: id,
-            active: true
+            status: 1
         });
         orderList[sellToken].push(orders[id]);
 
@@ -63,7 +63,7 @@ contract OrderBook is ReentrancyGuard, Ownable {
         // 只迭代指定范围
         for (uint256 i = firstIndex; i < endIndex; i++) {
             Order storage order = orderList[sellToken][i];
-            if (order.active &&
+            if (order.status==1 &&
                 order.price >= minPrice && order.price <= maxPrice &&
                 (sellToken == address(0) || order.sellToken == sellToken)) {
                 results[count] = order.orderId;
@@ -80,7 +80,7 @@ contract OrderBook is ReentrancyGuard, Ownable {
     // 买家成交：全额支付，全额获取
     function buyOrder(uint256 orderId) external nonReentrant {
         Order storage order = orders[orderId];
-        require(order.active, "Order not active");
+        require(order.status==1, "Order not active");
         require(order.seller != msg.sender, "Seller cannot buy own order");
         uint256 totalPrice = order.price * order.quantity;
         require(totalPrice > 0, "Invalid total price");
@@ -91,7 +91,7 @@ contract OrderBook is ReentrancyGuard, Ownable {
         // 卖家资产释放到买家
         require(IERC20(order.sellToken).transfer(msg.sender, order.quantity), "Asset transfer failed");
 
-        order.active = false;
+        order.status = 2;
 
         emit OrderFilled(orderId, msg.sender, order.seller, totalPrice);
     }
@@ -99,8 +99,9 @@ contract OrderBook is ReentrancyGuard, Ownable {
     // 管理员取消挂单 (可选)
     function cancelOrder(uint256 orderId) external onlyOwner {
         Order storage order = orders[orderId];
-        require(order.active, "Order not active");
+        require(order.status==1, "Order not active");
         require(IERC20(order.sellToken).transfer(order.seller, order.quantity), "Refund failed");
-        order.active = false;
+        order.status = 3;
+        emit OrderCanceled(orderId);
     }
 }

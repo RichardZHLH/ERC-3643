@@ -27,6 +27,24 @@ const config: HardhatUserConfig = {
         initialIndex: 0,
         count: 10,
       },
+    },
+    EthereumTestnet:{
+      url: "https://ethereum-sepolia-rpc.publicnode.com",
+      accounts: {
+        mnemonic: "skill level pulse dune pattern rival used syrup inner first balance sad",
+        path: "m/44'/60'/0'/0",
+        initialIndex: 0,
+        count: 10,
+      },
+    },
+    PolygenAmoy:{
+      url: "https://polygon-amoy.drpc.org",
+      accounts: {
+        mnemonic: "skill level pulse dune pattern rival used syrup inner first balance sad",
+        path: "m/44'/60'/0'/0",
+        initialIndex: 0,
+        count: 10,
+      },
     }
   },
   gasReporter: {

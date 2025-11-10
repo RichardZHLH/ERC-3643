@@ -1,0 +1,26 @@
+{
+  "suite": {
+    "claimTopicsRegistry": "0xd08aa4199127Ad4721b73445a66bd2a4Bbf43D5d",
+    "trustedIssuersRegistry": "0xD88fbB5e6a6B18291Cc8e34656A5514b1C5275F3",
+    "identityRegistryStorage": "0x0ebC17186762Eb48eeEf2495D06578FcaA9FeCD0",
+    "defaultCompliance": "0x5795ee13266c1D3444d9A98f516D8dDFEa09E18b",
+    "identityRegistry": "0xC0D755E0535a0ee0258ecAA47343D74bD9357E96"
+  },
+  "authorities": {
+    "trexImplementationAuthority": "0xE8bA487BcdB99A169aD77b049a3a3AF5EE6c8939",
+    "identityImplementationAuthority": "0x4074dc0F3ed1103eA151a6f567EBeB0Fc30F90CE"
+  },
+  "factories": {
+    "trexFactory": "0xDE41dD8b9f0969C5810182CD0D230d40D21f01f1",
+    "identityFactory": "0xd4E1247c04d495ad75638fa5810c635ad751F60c"
+  },
+  "implementations": {
+    "identityImplementation": "0x3eC750A7ceCB7CE72Ce8587caD557122947A5e8A",
+    "claimTopicsRegistryImplementation": "0x6E973f5192eDfAb746bFB0237D6088e243C34f4f",
+    "trustedIssuersRegistryImplementation": "0x80b2635ae2b030215A6be321Aa21AdAa0347E636",
+    "identityRegistryStorageImplementation": "0x13dD3e6a382CC85d28a8A94fD78aA154C92B5890",
+    "identityRegistryImplementation": "0xe40D49a3Eb10A6C1dc5A81C2651EC77778F83786",
+    "modularComplianceImplementation": "0x2a8BB0E6A9deCc492856b62F184f8eAC0B5736C6",
+    "tokenImplementation": "0x9220dFfA94eE516328546CFd77699E9af97ab2E7"
+  }
+}

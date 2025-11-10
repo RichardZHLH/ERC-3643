@@ -3,7 +3,8 @@ pragma solidity ^0.8.17;
 
 import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/IERC20Metadata.sol";
-contract Platform {
+import "./OrderBook.sol";
+contract Platform is OrderBook {
     uint256 feeRate = 1;
     uint256 feeRateBase = 100;
     uint256 public price; // P * 10**18，per USDT（human-readable）

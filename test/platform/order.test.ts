@@ -1,9 +1,8 @@
 import { loadFixture } from '@nomicfoundation/hardhat-network-helpers';
 import { expect } from 'chai';
 import { ethers } from 'hardhat';
-import { deployFullSuiteFixture, deploySuiteWithModularCompliancesFixture } from '../fixtures/deploy-full-suite.fixture';
+import {deployPlatformFixture} from '../fixtures/deploy-platform.fixture'
 
-const USDT = '0x7fc66500c84a76ad7e9c93437bfc5ac33e2ddae9'
 async function deployOrderBook() {
   const [deployer, tokenIssuer, tokenAgent, tokenAdmin, claimIssuer, aliceWallet, bobWallet, charlieWallet, davidWallet, anotherWallet] =
     await ethers.getSigners();
@@ -19,11 +18,13 @@ describe('platform - OrderBook', () => {
     describe('when the caller is the owner', () => {
       it('should add order', async () => {
         const {
+          accounts: { aliceWallet },
           suite: { token },
-        } = await loadFixture(deployFullSuiteFixture);
-        console.log("token:", token.address)
-        let orderBook = await deployOrderBook();
-        let tx = await orderBook.placeOrder(token.address, USDT, 10000, 10000);
+          platform: { platform, feeToken },
+        } = await loadFixture(deployPlatformFixture);
+        console.log("platform:", token.address, feeToken.address)
+        await token.connect(aliceWallet).approve(platform.address, 10)
+        let tx = await platform.connect(aliceWallet).placeOrder(token.address, feeToken.address, 10, 10);
         console.log("tx:", tx)
       });
     });

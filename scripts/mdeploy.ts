@@ -173,7 +173,7 @@ export async function deployFullSuiteFixture() {
 
   // deploy set Charlie OID
   const claimForCharlie = {
-    data: ethers.utils.hexlify(ethers.utils.toUtf8Bytes('This is a boy.')),
+    data: ethers.utils.hexlify(ethers.utils.toUtf8Bytes('This is a girl.')),
     issuer: claimIssuerContract.address,
     topic: claimTopics[0],
     scheme: 1,
@@ -216,6 +216,7 @@ export async function deployFullSuiteFixture() {
     await tx.wait()
 
   await token.connect(tokenAgent).mint(aliceWallet.address, 1000);
+  await token.connect(tokenAgent).mint(charlieWallet.address, 500);
   // await token.connect(tokenAgent).mint(bobWallet.address, 500);
 
   await token.connect(tokenAgent).unpause();
@@ -396,7 +397,6 @@ async function main() {
 
     // deploy set Platform OID
     let identityRegistry = context.suite.identityRegistry
-    let deployer = context.accounts.deployer
     const platformIdentity = await deployIdentityProxy(context.authorities.identityImplementationAuthority.address, context.accounts.platformAgentWallet.address, context.accounts.deployer);
     await identityRegistry
       .connect(context.accounts.tokenAgent)
@@ -441,7 +441,7 @@ async function main() {
     console.log("Finished")
 
 
-    
+
 }
 
 main()
